@@ -13,10 +13,12 @@ class PagesController extends Controller
 
     public function about()
     {
-    	
-    	return view('pages.about')->with([
-    		'first' => 'Gofur',
-    		 'last' => 'Brente'
-    		]);
+    	$people = [ 'Anto Oke', 'Haji Bolot', 'Setu Morang'];
+    	return view('pages.about', compact('people'));
+    }
+
+    public function contact()
+    {
+    	return view('pages.contact');
     }
 }
