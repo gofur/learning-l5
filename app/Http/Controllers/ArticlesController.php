@@ -9,6 +9,7 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\HttpResponse;
 use App\Http\Controllers\Controller;
 
+
 class ArticlesController extends Controller
 {
     public function index()
@@ -31,7 +32,10 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request)
     {
-    	Article::create($request->all());
+        $article = new Article($request->all()); //user_id
+        \Auth::user()->articles()->save($article);
+    	//Article::create($request->all());
+
     	return redirect('articles');
     }
 
