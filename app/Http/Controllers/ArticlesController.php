@@ -12,6 +12,16 @@ use App\Http\Controllers\Controller;
 
 class ArticlesController extends Controller
 {
+
+    public function __construct()
+    {
+        //all must be login
+        //$this->middleware('auth');
+        
+        //only page tertentu
+        //$this->middleware('auth', ['only' => 'create']);
+    }
+
     public function index()
     {
     	$articles = Article::latest('updated_at')->get();
