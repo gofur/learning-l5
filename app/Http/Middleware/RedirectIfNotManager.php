@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Demo
+class RedirectIfNotManager
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,11 @@ class Demo
      */
     public function handle($request, Closure $next)
     {
-       
+        if( ! $request->user()->isATeamManager())
+        {
+            return redirect('articles');
+        }
+
         return $next($request);
     }
 }
