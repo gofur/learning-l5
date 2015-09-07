@@ -15,7 +15,11 @@ class ArticlesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //all must be login
+        //$this->middleware('auth');
+        
+        //only page tertentu
+        //$this->middleware('auth', ['only' => 'create']);
     }
 
     public function index()

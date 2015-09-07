@@ -21,7 +21,8 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
-Route::get('about','PagesController@about') ;
+//ini digunakan jika harus login dulu ke page tersebut
+Route::get('about',['middleware'=> 'auth', 'uses' =>'PagesController@about']) ;
 Route::get('contact','PagesController@contact');
 Route::resource('articles','ArticlesController');
 Route::controllers(['auth'=> 'Auth\AuthController', 'password' => 'Auth\PasswordController']);
