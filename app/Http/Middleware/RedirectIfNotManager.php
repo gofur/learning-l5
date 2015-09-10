@@ -15,7 +15,7 @@ class RedirectIfNotManager
      */
     public function handle($request, Closure $next)
     {
-        if( ! $request->user()->isATeamManager())
+        if(\Auth::user() && ! $request->user()->isATeamManager())
         {
             return redirect('articles');
         }

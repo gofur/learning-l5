@@ -19,7 +19,7 @@ class ArticlesController extends Controller
         //$this->middleware('auth');
         
         //only page tertentu
-        //$this->middleware('auth', ['only' => 'create']);
+        $this->middleware('auth', ['only' => 'create']);
     }
 
     public function index()
@@ -28,11 +28,9 @@ class ArticlesController extends Controller
     	return view('articles.index', compact('articles'));
     }
 
-    public function show($id)
+    public function show(Article $article)
     {
-    	$article = Article::findOrFail($id);
-
-    	return view('articles.show', compact('article'));
+     	return view('articles.show', compact('article'));
     }
 
     public function create()
@@ -49,15 +47,13 @@ class ArticlesController extends Controller
     	return redirect('articles');
     }
 
-    public function edit($id)
+    public function edit(Article $article)
     {
-    	$article = Article::findOrFail($id);
     	return view('articles.edit', compact('article'));
     }
 
-    public function update($id, ArticleRequest $request)
+    public function update(Article $article, ArticleRequest $request)
     {
-    	$article = Article::findOrFail($id);
     	$article->update($request->all());
     	return redirect('articles');
     }
